@@ -22,10 +22,37 @@ const removeExpense = ({ id }) => ({
   id
 });
 
+const editExpense = (id, { description, note, amount, createdAt } = {}) => ({
+  type: 'EDIT_EXPENSE',
+  id,
+  updates: {
+    description,
+    note,
+    amount,
+    createdAt
+  }
+});
+
+const setTextFilter = (text = '') => ({
+  type: 'SET_TEXT_FILTER',
+  text
+});
+
 const expensesReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_EXPENSE':
       return [...state, action.expense];
+    case 'EDIT_EXPENSE':
+      return state.map((expense) => {
+        if (expense.id === action.id) {
+          return {
+            ...expense,
+            ...action.updates
+          };
+        } else {
+          return expense;
+        }
+      });
     case 'REMOVE_EXPENSE':
       return state.filter((e) => e.id !== action.id);
     default:
@@ -43,6 +70,8 @@ const filtersReducer = (
   action
 ) => {
   switch (action.type) {
+    case 'SET_TEXT_FILTER':
+      return { ...state, text: action.text };
     default:
       return state;
   }
@@ -59,4 +88,6 @@ store.subscribe(() => {
 store.dispatch(
   addExpense({ description: 'asdf', note: 'leiras', amount: 12, createdAt: 1 })
 );
+store.dispatch(editExpense(1, { description: 'javitás' }));
 store.dispatch(removeExpense({ id: 1 }));
+store.dispatch(setTextFilter('bob'));
