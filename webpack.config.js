@@ -7,7 +7,7 @@ module.exports = (env) => {
 
   return {
     mode: isProduction ? 'production' : 'development',
-    entry: ['@babel/polyfill', './src/app.js'],
+    entry: ['@babel/polyfill', './src/redux.js'],
     output: {
       path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js'
