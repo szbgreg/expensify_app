@@ -38,6 +38,23 @@ const setTextFilter = (text = '') => ({
   text
 });
 
+const sortByDate = () => ({
+  type: 'SORT_BY_DATE'
+});
+
+const sortByAmount = () => ({
+  type: 'SORT_BY_AMOUNT'
+});
+
+const setStartDate = (date) => ({
+  type: 'SET_START_DATE',
+  date
+});
+const setEndDate = (date) => ({
+  type: 'SET_END_DATE',
+  date
+});
+
 const expensesReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_EXPENSE':
@@ -72,9 +89,29 @@ const filtersReducer = (
   switch (action.type) {
     case 'SET_TEXT_FILTER':
       return { ...state, text: action.text };
+    case 'SORTY_BY_DATE':
+      return { ...state, sortBy: 'date' };
+    case 'SORT_BY_AMOUNT':
+      return { ...state, sortBy: 'amount' };
+    case 'SET_START_DATE':
+      return { ...state, startDate: action.date };
+    case 'SET_END_DATE':
+      return { ...state, endDate: action.date };
     default:
       return state;
   }
+};
+
+const getVisivleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
+  return expenses.filter((expense) => {
+    const startDateMatch =
+      typeof startDate !== 'number' || expense.createdAt >= startDate;
+    const endDateMatch =
+      typeof startDate !== 'number' || expense.createdAt <= endDate;
+    const textMatch = expense.description.toLowerCase().includes(text);
+
+    return startDateMatch && endDateMatch && textMatch;
+  });
 };
 
 const store = createStore(
@@ -91,3 +128,7 @@ store.dispatch(
 store.dispatch(editExpense(1, { description: 'javitás' }));
 store.dispatch(removeExpense({ id: 1 }));
 store.dispatch(setTextFilter('bob'));
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
+store.dispatch(setStartDate(12));
+store.dispatch(setEndDate(55));
