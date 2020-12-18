@@ -10,7 +10,7 @@ const filtersReducer = (
   switch (action.type) {
     case 'SET_TEXT_FILTER':
       return { ...state, text: action.text };
-    case 'SORTY_BY_DATE':
+    case 'SORT_BY_DATE':
       return { ...state, sortBy: 'date' };
     case 'SORT_BY_AMOUNT':
       return { ...state, sortBy: 'amount' };
