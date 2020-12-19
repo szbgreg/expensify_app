@@ -7,12 +7,7 @@ module.exports = (env) => {
 
   return {
     mode: isProduction ? 'production' : 'development',
-    entry: [
-      'react-dates/initialize',
-      'react-dates/lib/css/_datepicker.css',
-      '@babel/polyfill',
-      './src/app.js'
-    ],
+    entry: ['@babel/polyfill', './src/app.js'],
     output: {
       path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js'
