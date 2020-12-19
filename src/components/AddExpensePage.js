@@ -1,8 +1,9 @@
 import React from 'react';
+import ExpenseForm from './ExpenseForm';
 
 const AddExpensePage = () => (
   <div>
-    <p>this is from my dashboard component</p>
+    <ExpenseForm />
   </div>
 );
 
