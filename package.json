@@ -9,6 +9,7 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
+    "numeral": "^2.0.6",
     "react": "^17.0.1",
     "react-addons-shallow-compare": "^15.6.3",
     "react-dates": "^21.8.0",
@@ -44,7 +45,7 @@
     "build:dev": "webpack",
     "build:prod": "webpack --env production",
     "dev-server": "webpack serve",
-    "start":"node server/server.js",
+    "start": "node server/server.js",
     "heroku-postbuild": "yarn run build:prod"
   },
   "author": "szbgreg",

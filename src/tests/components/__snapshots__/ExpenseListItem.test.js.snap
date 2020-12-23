@@ -6,9 +6,10 @@ exports[`should render ExpenseListItem correctly 1`] = `
     Gum
   </h3>
   <p>
-    198
-     - 
-    0
+    $1.98
+     -
+     
+    January 1st, 1970
   </p>
   <Link
     to="/edit/1"
