@@ -41,3 +41,8 @@ export const editExpense = (
     createdAt
   }
 });
+
+export const setExpenses = (expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses
+});
