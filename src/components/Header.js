@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
 export const Header = (props) => (
-  <header>
-    <Link to="/dashboard">
+  <header className="header">
+    <Link className="header__title" to="/dashboard">
       <h1>Expensify</h1>
     </Link>
     <button onClick={props.startLogout}>Logout</button>
